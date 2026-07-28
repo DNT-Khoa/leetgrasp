@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- V4 — Flat "LP" monogram in LeetCode angular style, on the brand orange fill. -->
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB84D"/>
+      <stop offset="1" stop-color="#FFA116"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="256" height="256" rx="48" fill="url(#bg4)"/>
+
+  <!-- LP monogram in dark navy, angular blocks -->
+  <g fill="#0F172A">
+    <!-- L -->
+    <rect x="48" y="52" width="28" height="128" rx="4"/>
+    <rect x="48" y="152" width="72" height="28" rx="4"/>
+
+    <!-- P: vertical stem -->
+    <rect x="140" y="52" width="28" height="152" rx="4"/>
+    <!-- P: top bar -->
+    <rect x="140" y="52" width="60" height="28" rx="4"/>
+    <!-- P: right stem of the bowl -->
+    <rect x="180" y="52" width="28" height="72" rx="4"/>
+    <!-- P: middle bar closing the bowl -->
+    <rect x="140" y="96" width="68" height="28" rx="4"/>
+  </g>
+
+  <!-- Small orange dot on the L descender to keep the composition asymmetric and playful -->
+  <circle cx="112" cy="60" r="10" fill="#FFA116" stroke="#0F172A" stroke-width="3"/>
+</svg>

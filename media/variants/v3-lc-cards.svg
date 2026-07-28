@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- V3 — LeetCode-orange stack of flashcards (repetition motif) with a small "LC" tag. -->
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="cardT3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB84D"/>
+      <stop offset="1" stop-color="#FFA116"/>
+    </linearGradient>
+    <linearGradient id="cardM3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBBF24"/>
+      <stop offset="1" stop-color="#E67E00"/>
+    </linearGradient>
+    <linearGradient id="cardB3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FCD34D"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="256" height="256" rx="48" fill="url(#bg3)"/>
+
+  <g filter="url(#shadow3)">
+    <!-- Bottom card -->
+    <rect x="60" y="152" width="136" height="60" rx="12" fill="url(#cardB3)" stroke="#0F172A" stroke-width="3"/>
+    <!-- Middle card -->
+    <rect x="52" y="114" width="152" height="60" rx="12" fill="url(#cardM3)" stroke="#0F172A" stroke-width="3"/>
+    <!-- Top card (biggest, most prominent) -->
+    <rect x="44" y="60" width="168" height="76" rx="14" fill="url(#cardT3)" stroke="#0F172A" stroke-width="3"/>
+
+    <!-- LC monogram on the top card, in dark navy -->
+    <g fill="#0F172A">
+      <!-- L -->
+      <rect x="78" y="76" width="12" height="44" rx="2"/>
+      <rect x="78" y="108" width="30" height="12" rx="2"/>
+      <!-- C -->
+      <rect x="122" y="76" width="40" height="12" rx="2"/>
+      <rect x="122" y="76" width="12" height="44" rx="2"/>
+      <rect x="122" y="108" width="40" height="12" rx="2"/>
+    </g>
+  </g>
+</svg>

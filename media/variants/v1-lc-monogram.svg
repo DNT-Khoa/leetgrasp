@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- V1 — Faithful LeetCode-style angular LC monogram, orange on navy. -->
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="lc1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB84D"/>
+      <stop offset="1" stop-color="#FFA116"/>
+    </linearGradient>
+    <filter id="soft1" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="256" height="256" rx="48" fill="url(#bg1)"/>
+
+  <!-- Chunky angular LC monogram — geometric blocks, LeetCode brand vibe -->
+  <g filter="url(#soft1)" fill="url(#lc1)">
+    <!-- L: vertical stem -->
+    <rect x="52" y="60" width="30" height="120" rx="4"/>
+    <!-- L: bottom bar -->
+    <rect x="52" y="150" width="72" height="30" rx="4"/>
+
+    <!-- C: top bar -->
+    <rect x="120" y="60" width="84" height="30" rx="4"/>
+    <!-- C: left stem -->
+    <rect x="120" y="60" width="30" height="120" rx="4"/>
+    <!-- C: bottom bar -->
+    <rect x="120" y="150" width="84" height="30" rx="4"/>
+  </g>
+
+  <!-- Small "prep" dot — the sixth glyph hint that this is LeetPrep, not LeetCode -->
+  <circle cx="210" cy="200" r="14" fill="#22C55E" stroke="#0F172A" stroke-width="3"/>
+  <path d="M 202 200 L 208 206 L 218 194" fill="none" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
