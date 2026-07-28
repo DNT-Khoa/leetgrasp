@@ -1,0 +1,141 @@
+{
+  "name": "leetprep",
+  "displayName": "LeetPrep",
+  "description": "Scaffold, test, and submit LeetCode problems in Python from VS Code — with an Anki-style practice panel that surfaces the problems you found hardest first.",
+  "version": "0.1.0",
+  "publisher": "khoa-doan",
+  "author": {
+    "name": "Khoa Doan"
+  },
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DNT-Khoa/leetprep.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "keywords": [
+    "leetcode",
+    "python",
+    "interview-prep",
+    "spaced-repetition"
+  ],
+  "categories": [
+    "Programming Languages",
+    "Testing"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "leetprep.init",
+        "title": "LeetPrep: Initialize Workspace"
+      },
+      {
+        "command": "leetprep.newProblem",
+        "title": "LeetPrep: New Problem from URL"
+      },
+      {
+        "command": "leetprep.searchLeetcode",
+        "title": "LeetPrep: Search LeetCode"
+      },
+      {
+        "command": "leetprep.runTests",
+        "title": "LeetPrep: Run Tests",
+        "icon": "$(play)"
+      },
+      {
+        "command": "leetprep.submit",
+        "title": "LeetPrep: Submit",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "leetprep.resetProblem",
+        "title": "LeetPrep: Reset Problem",
+        "icon": "$(discard)"
+      },
+      {
+        "command": "leetprep.pickRandom",
+        "title": "LeetPrep: Pick Random Practice Problem",
+        "icon": "$(getting-started-beginner)"
+      },
+      {
+        "command": "leetprep.setLeetcodeCookies",
+        "title": "LeetPrep: Set LeetCode Cookies"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "leetprep",
+          "title": "LeetPrep",
+          "icon": "media/icon-sidebar.svg"
+        }
+      ]
+    },
+    "views": {
+      "leetprep": [
+        {
+          "id": "leetprep.practice",
+          "name": "Practice"
+        }
+      ]
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "leetprep.runTests",
+          "when": "leetprep.activeIsProblem"
+        },
+        {
+          "command": "leetprep.submit",
+          "when": "leetprep.activeIsProblem"
+        },
+        {
+          "command": "leetprep.resetProblem",
+          "when": "leetprep.activeIsProblem"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "leetprep.runTests",
+          "when": "leetprep.activeIsProblem",
+          "group": "navigation@1"
+        },
+        {
+          "command": "leetprep.submit",
+          "when": "leetprep.activeIsProblem",
+          "group": "navigation@2"
+        },
+        {
+          "command": "leetprep.resetProblem",
+          "when": "leetprep.activeIsProblem",
+          "group": "navigation@3"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "leetprep.pickRandom",
+          "when": "view == leetprep.practice",
+          "group": "navigation@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.0",
+    "typescript": "^5.4.0"
+  }
+}
