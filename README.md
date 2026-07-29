@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="media/icon.png" alt="LeetPrep" width="128"/>
+  <img src="https://raw.githubusercontent.com/DNT-Khoa/leetprep/main/media/icon.png" alt="LeetPrep" width="128"/>
   <h1>LeetPrep</h1>
   <p>Scaffold, test, and submit LeetCode problems in Python — with an Anki-style practice panel that surfaces the problems you found hardest first.</p>
 </div>
