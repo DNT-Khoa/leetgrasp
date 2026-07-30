@@ -4,6 +4,9 @@
   <p>Scaffold, test, and submit LeetCode problems in Python — with an Anki-style practice panel that surfaces the problems you found hardest first.</p>
 </div>
 
+> [!WARNING]
+> **🚧 Under active development.** LeetPrep is pre-1.0 and not yet published to the VS Code Marketplace. Commands, data-file schemas (`.leetprep/reviews.json`, per-problem `.leetprep.json`), and the rating workflow may change between versions without a migration path. Try it locally by cloning the repo and running the extension from the **Run Extension** launch config in VS Code — feedback and issue reports are welcome.
+
 ## ⚡ What it does
 
 LeetPrep is a VS Code extension for interview prep on LeetCode. It:
