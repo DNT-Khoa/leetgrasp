@@ -1,7 +1,7 @@
 {
   "name": "leetprep",
   "displayName": "LeetPrep",
-  "description": "Scaffold, test, and submit LeetCode problems in Python from VS Code — with an Anki-style practice panel that surfaces the problems you found hardest first.",
+  "description": "Scaffold, test, and submit LeetCode problems in Python from VS Code — with an Anki-inspired rating step that drives a hardest-first practice queue.",
   "version": "0.1.0",
   "publisher": "khoa-doan",
   "author": {

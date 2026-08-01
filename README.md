@@ -1,11 +1,11 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/DNT-Khoa/leetprep/main/media/icon.png" alt="LeetPrep" width="128"/>
   <h1>LeetPrep</h1>
-  <p>Scaffold, test, and submit LeetCode problems in Python — with an Anki-style practice panel that surfaces the problems you found hardest first.</p>
+  <p>Scaffold, test, and submit LeetCode problems in Python — with an Anki-inspired rating step that drives a hardest-first practice queue.</p>
 </div>
 
 > [!WARNING]
-> **🚧 Under active development.** LeetPrep is pre-1.0 and not yet published to the VS Code Marketplace. Commands, data-file schemas (`.leetprep/reviews.json`, per-problem `.leetprep.json`), and the rating workflow may change between versions without a migration path. Try it locally by cloning the repo and running the extension from the **Run Extension** launch config in VS Code — feedback and issue reports are welcome.
+> **🚧 Under active development.** LeetPrep is pre-1.0. Commands, data-file schemas (`.leetprep/reviews.json`, per-problem `.leetprep.json`), and the rating workflow may change between versions without a migration path. Feedback and issue reports are welcome.
 
 ## ⚡ What it does
 
@@ -16,8 +16,6 @@ LeetPrep is a VS Code extension for interview prep on LeetCode. It:
 - **Grades your recall** — after every Accepted submission, a modal asks you to rate the attempt (**Hard / Medium / Easy**). Ratings drive the practice panel: 🔴 Hard problems appear at the top, 🟢 Easy at the bottom. Within a group the oldest attempts come first so you don't see the same problem every session.
 - **Re-solves on demand** — click any problem in the panel and it silently resets `solution.py` back to the starter so you can re-solve it from scratch. The 🎲 button picks one at random (interview-mode: no idea what's coming).
 
-Same architecture as [kestrelcp](https://github.com/DNT-Khoa/kestrelcp): thin TypeScript wiring around fat Python scripts (`scripts/*.py`), invoked in a single reused terminal.
-
 ## 🚀 Install
 
 **Requirements**
@@ -26,7 +24,13 @@ Same architecture as [kestrelcp](https://github.com/DNT-Khoa/kestrelcp): thin Ty
 - `pip install requests beautifulsoup4` — used by the bundled scripts.
 - **VS Code 1.85+**.
 
-Install from the Marketplace, then in a new folder run **`LeetPrep: Initialize Workspace`** from the Command Palette to seed `.leetprep/reviews.json`.
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=khoa-doan.leetprep) or from the command line:
+
+```bash
+code --install-extension khoa-doan.leetprep
+```
+
+Then in a new folder run **`LeetPrep: Initialize Workspace`** from the Command Palette to seed `.leetprep/reviews.json`.
 
 ## 🔑 LeetCode setup
 
@@ -45,7 +49,7 @@ Cookies typically last ~2 weeks. When they expire you'll see an `[auth]` message
 2. **Iterate** — click ▶ to run example cases. Fast, doesn't count as a submission, uses LeetCode's own judge.
 3. **Submit** — click ☁️, confirm `y` in the terminal. On Accepted, a modal pops up: **How hard was this?** Pick Hard / Medium / Easy (dismissing defaults to Easy).
 4. **Practice later** — open the **LeetPrep** activity-bar entry. Your solved problems are grouped by rating with hardest at the top. Click any row to re-solve (silent reset to starter). Or click 🎲 for a random pick.
-5. **Reset manually** — the ↻ button in the editor toolbar resets `solution.py` back to the starter (with a confirmation modal, unlike panel-click and random-pick which reset silently).
+5. **Reset manually** — the ↻ button in the editor toolbar resets `solution.py` back to the starter. Panel-click and random-pick do the same silently as part of opening the problem.
 
 ## 📋 Commands
 
