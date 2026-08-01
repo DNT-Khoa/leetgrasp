@@ -311,16 +311,10 @@ async function resetProblem() {
     );
     return;
   }
-  const choice = await vscode.window.showWarningMessage(
-    `Reset ${slug}/solution.py to the original starter code? Your current work will be lost.`,
-    { modal: true },
-    "Reset",
-  );
-  if (choice !== "Reset") return;
-  await runResetSilent(slug);
+  await runReset(slug);
 }
 
-async function runResetSilent(slug: string): Promise<void> {
+async function runReset(slug: string): Promise<void> {
   await runInTerminal(`${bundledScript("reset_problem.py")} ${shellQuote(slug)}`);
 }
 
@@ -365,7 +359,7 @@ async function openAndReset(slug: string, practice: PracticeProvider) {
     "vscode.open",
     vscode.Uri.file(solutionPath),
   );
-  await runResetSilent(slug);
+  await runReset(slug);
   practice.refresh();
 }
 
