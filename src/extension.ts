@@ -18,8 +18,8 @@ import {
 let extensionRoot: string;
 let extensionContext: vscode.ExtensionContext;
 
-const LEETCODE_SESSION_KEY = "leetprep.leetcodeSession";
-const LEETCODE_CSRF_KEY = "leetprep.leetcodeCsrf";
+const LEETCODE_SESSION_KEY = "leetgrasp.leetcodeSession";
+const LEETCODE_CSRF_KEY = "leetgrasp.leetcodeCsrf";
 
 export function activate(context: vscode.ExtensionContext) {
   extensionRoot = context.extensionPath;
@@ -29,29 +29,29 @@ export function activate(context: vscode.ExtensionContext) {
   const practice = new PracticeProvider(root);
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("leetprep.init", () => initWorkspace()),
-    vscode.commands.registerCommand("leetprep.newProblem", () => newProblem()),
-    vscode.commands.registerCommand("leetprep.searchLeetcode", () =>
+    vscode.commands.registerCommand("leetgrasp.init", () => initWorkspace()),
+    vscode.commands.registerCommand("leetgrasp.newProblem", () => newProblem()),
+    vscode.commands.registerCommand("leetgrasp.searchLeetcode", () =>
       searchLeetcode(),
     ),
-    vscode.commands.registerCommand("leetprep.runTests", () => runTests()),
-    vscode.commands.registerCommand("leetprep.submit", () => submit()),
-    vscode.commands.registerCommand("leetprep.resetProblem", () =>
+    vscode.commands.registerCommand("leetgrasp.runTests", () => runTests()),
+    vscode.commands.registerCommand("leetgrasp.submit", () => submit()),
+    vscode.commands.registerCommand("leetgrasp.resetProblem", () =>
       resetProblem(),
     ),
-    vscode.commands.registerCommand("leetprep.pickRandom", () =>
+    vscode.commands.registerCommand("leetgrasp.pickRandom", () =>
       pickRandom(practice),
     ),
-    vscode.commands.registerCommand("leetprep.setLeetcodeCookies", () =>
+    vscode.commands.registerCommand("leetgrasp.setLeetcodeCookies", () =>
       setLeetcodeCookies(),
     ),
     vscode.commands.registerCommand(
-      "leetprep._openAndReset",
+      "leetgrasp._openAndReset",
       (slug: string) => openAndReset(slug, practice),
     ),
   );
 
-  const practiceView = vscode.window.createTreeView("leetprep.practice", {
+  const practiceView = vscode.window.createTreeView("leetgrasp.practice", {
     treeDataProvider: practice,
   });
   context.subscriptions.push(practiceView);
@@ -87,10 +87,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Watch for pending.json from a fresh Submit-Accepted.
     const pendingUri = vscode.Uri.file(
-      path.join(root, ".leetprep", "pending.json"),
+      path.join(root, ".leetgrasp", "pending.json"),
     );
     const pendingWatcher = vscode.workspace.createFileSystemWatcher(
-      new vscode.RelativePattern(root, ".leetprep/pending.json"),
+      new vscode.RelativePattern(root, ".leetgrasp/pending.json"),
     );
     const onPending = () => handlePending(root, practice);
     pendingWatcher.onDidCreate(onPending);
@@ -108,7 +108,7 @@ export function deactivate() {}
 function workspaceRoot(): string | undefined {
   const root = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
   if (!root) {
-    vscode.window.showErrorMessage("LeetPrep: open a folder first.");
+    vscode.window.showErrorMessage("LeetGrasp: open a folder first.");
   }
   return root;
 }
@@ -118,7 +118,7 @@ function requireInit(): string | undefined {
   if (!root) return undefined;
   if (!fs.existsSync(reviewsPath(root))) {
     vscode.window.showErrorMessage(
-      "LeetPrep: run 'LeetPrep: Initialize Workspace' first.",
+      "LeetGrasp: run 'LeetGrasp: Initialize Workspace' first.",
     );
     return undefined;
   }
@@ -132,7 +132,7 @@ function updateActiveContext(): void {
   if (editor && root) {
     const filePath = editor.document.uri.fsPath;
     if (path.basename(filePath) === "solution.py") {
-      const meta = path.join(path.dirname(filePath), ".leetprep.json");
+      const meta = path.join(path.dirname(filePath), ".leetgrasp.json");
       if (fs.existsSync(meta)) {
         isProblem = true;
       }
@@ -140,7 +140,7 @@ function updateActiveContext(): void {
   }
   vscode.commands.executeCommand(
     "setContext",
-    "leetprep.activeIsProblem",
+    "leetgrasp.activeIsProblem",
     isProblem,
   );
 }
@@ -151,7 +151,7 @@ function activeProblemSlug(root: string): string | undefined {
   const filePath = editor.document.uri.fsPath;
   if (path.basename(filePath) !== "solution.py") return undefined;
   const problemDir = path.dirname(filePath);
-  if (!fs.existsSync(path.join(problemDir, ".leetprep.json"))) return undefined;
+  if (!fs.existsSync(path.join(problemDir, ".leetgrasp.json"))) return undefined;
   const rel = path.relative(root, problemDir);
   if (!rel || rel.startsWith("..") || rel.includes(path.sep)) return undefined;
   return rel;
@@ -178,7 +178,7 @@ function checkPython3(): void {
 
 function warnNoPython(): void {
   vscode.window.showErrorMessage(
-    "LeetPrep: `python3` not found on PATH. Install Python 3.10+ and ensure `python3 --version` works from your shell — the bundled scripts (new.py / test_leetcode.py / submit_leetcode.py / reset_problem.py) cannot run without it.",
+    "LeetGrasp: `python3` not found on PATH. Install Python 3.10+ and ensure `python3 --version` works from your shell — the bundled scripts (new.py / test_leetcode.py / submit_leetcode.py / reset_problem.py) cannot run without it.",
   );
 }
 
@@ -195,7 +195,7 @@ async function initWorkspace() {
   const root = workspaceRoot();
   if (!root) return;
 
-  const dir = path.join(root, ".leetprep");
+  const dir = path.join(root, ".leetgrasp");
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
   const p = reviewsPath(root);
@@ -207,29 +207,29 @@ async function initWorkspace() {
   if (!fs.existsSync(readme)) {
     fs.writeFileSync(
       readme,
-      `# LeetPrep workspace
+      `# LeetGrasp workspace
 
-This folder is a LeetPrep workspace. Ratings and attempt history live in
-\`.leetprep/reviews.json\`.
+This folder is a LeetGrasp workspace. Ratings and attempt history live in
+\`.leetgrasp/reviews.json\`.
 
 ## Getting started
 
-1. Open the **LeetPrep** activity-bar entry to see the Practice panel.
-2. Run **LeetPrep: Set LeetCode Cookies** (from the Command Palette) to paste
+1. Open the **LeetGrasp** activity-bar entry to see the Practice panel.
+2. Run **LeetGrasp: Set LeetCode Cookies** (from the Command Palette) to paste
    \`LEETCODE_SESSION\` and \`csrftoken\` from your browser DevTools.
-3. Run **LeetPrep: Search LeetCode** or **LeetPrep: New Problem from URL** to
+3. Run **LeetGrasp: Search LeetCode** or **LeetGrasp: New Problem from URL** to
    scaffold a problem. Each problem lives in its own folder:
-   \`<slug>/solution.py\`, \`<slug>/notes.md\`, \`<slug>/.leetprep.json\`.
+   \`<slug>/solution.py\`, \`<slug>/notes.md\`, \`<slug>/.leetgrasp.json\`.
 4. With a \`solution.py\` open, use the ▶ / ☁️ / ↻ buttons in the editor
    toolbar to test / submit / reset.
-5. After a Submit-Accepted, LeetPrep pops a modal asking you to rate
+5. After a Submit-Accepted, LeetGrasp pops a modal asking you to rate
    Hard / Medium / Easy. The Practice panel groups your problems by that
    rating so the ones you found hardest bubble to the top.
 `,
     );
   }
 
-  vscode.window.showInformationMessage("LeetPrep workspace ready.");
+  vscode.window.showInformationMessage("LeetGrasp workspace ready.");
 }
 
 async function newProblem() {
@@ -255,7 +255,7 @@ async function runTests() {
   const slug = activeProblemSlug(root);
   if (!slug) {
     vscode.window.showErrorMessage(
-      "LeetPrep: open a scaffolded solution.py first.",
+      "LeetGrasp: open a scaffolded solution.py first.",
     );
     return;
   }
@@ -276,7 +276,7 @@ async function submit() {
   const slug = activeProblemSlug(root);
   if (!slug) {
     vscode.window.showErrorMessage(
-      "LeetPrep: open a scaffolded solution.py first.",
+      "LeetGrasp: open a scaffolded solution.py first.",
     );
     return;
   }
@@ -293,7 +293,7 @@ async function submit() {
 
 async function promptForCookies() {
   const choice = await vscode.window.showWarningMessage(
-    "LeetCode cookies not set. Run 'LeetPrep: Set LeetCode Cookies' first.",
+    "LeetCode cookies not set. Run 'LeetGrasp: Set LeetCode Cookies' first.",
     "Set cookies now",
   );
   if (choice === "Set cookies now") {
@@ -307,7 +307,7 @@ async function resetProblem() {
   const slug = activeProblemSlug(root);
   if (!slug) {
     vscode.window.showErrorMessage(
-      "LeetPrep: open a scaffolded solution.py first.",
+      "LeetGrasp: open a scaffolded solution.py first.",
     );
     return;
   }
@@ -324,7 +324,7 @@ async function pickRandom(practice: PracticeProvider) {
   const slug = randomTrackedSlug(root);
   if (!slug) {
     vscode.window.showInformationMessage(
-      "LeetPrep: no practice problems yet. Solve and submit one to add it here.",
+      "LeetGrasp: no practice problems yet. Solve and submit one to add it here.",
     );
     return;
   }
@@ -345,7 +345,7 @@ async function openAndReset(slug: string, practice: PracticeProvider) {
   if (!fs.existsSync(solutionPath)) {
     if (!entry) {
       vscode.window.showErrorMessage(
-        `LeetPrep: no metadata for '${slug}'. Try 'LeetPrep: New Problem from URL'.`,
+        `LeetGrasp: no metadata for '${slug}'. Try 'LeetGrasp: New Problem from URL'.`,
       );
       return;
     }
@@ -400,11 +400,11 @@ async function setLeetcodeCookies() {
   const parts: string[] = [];
   if (stored.length) parts.push(`stored ${stored.join(" + ")}`);
   if (cleared.length) parts.push(`cleared ${cleared.join(" + ")}`);
-  vscode.window.showInformationMessage(`LeetPrep: ${parts.join("; ")}.`);
+  vscode.window.showInformationMessage(`LeetGrasp: ${parts.join("; ")}.`);
 }
 
 async function handlePending(root: string, practice: PracticeProvider) {
-  const pendingPath = path.join(root, ".leetprep", "pending.json");
+  const pendingPath = path.join(root, ".leetgrasp", "pending.json");
   if (!fs.existsSync(pendingPath)) return;
 
   let pending: PendingEntry;
@@ -412,7 +412,7 @@ async function handlePending(root: string, practice: PracticeProvider) {
     pending = JSON.parse(fs.readFileSync(pendingPath, "utf8")) as PendingEntry;
   } catch (e: any) {
     vscode.window.showErrorMessage(
-      `LeetPrep: could not read pending.json: ${e.message || e}`,
+      `LeetGrasp: could not read pending.json: ${e.message || e}`,
     );
     fs.rmSync(pendingPath, { force: true });
     return;
@@ -456,7 +456,7 @@ async function fetchAllLeetcodeProblems(): Promise<LeetcodeSearchResult[]> {
   // searchKeyword behind auth, so client-side filter over this REST list
   // is the simplest no-auth path.
   const r = await fetch("https://leetcode.com/api/problems/all/", {
-    headers: { "User-Agent": "leetprep/1.0" },
+    headers: { "User-Agent": "leetgrasp/1.0" },
   });
   if (!r.ok) {
     throw new Error(`LeetCode catalog failed: HTTP ${r.status}`);
@@ -507,7 +507,7 @@ async function searchLeetcode() {
       try {
         return await fetchLeetcodeQuestions(query);
       } catch (e: any) {
-        vscode.window.showErrorMessage(`LeetPrep: ${e.message}`);
+        vscode.window.showErrorMessage(`LeetGrasp: ${e.message}`);
         return [];
       }
     },
@@ -515,7 +515,7 @@ async function searchLeetcode() {
 
   if (questions.length === 0) {
     vscode.window.showInformationMessage(
-      "LeetPrep: no LeetCode problems match that query.",
+      "LeetGrasp: no LeetCode problems match that query.",
     );
     return;
   }
@@ -536,7 +536,7 @@ async function searchLeetcode() {
 
   if (picked.question.paidOnly) {
     vscode.window.showErrorMessage(
-      "LeetPrep: this is a premium-only LeetCode problem and cannot be scaffolded without a paid subscription.",
+      "LeetGrasp: this is a premium-only LeetCode problem and cannot be scaffolded without a paid subscription.",
     );
     return;
   }

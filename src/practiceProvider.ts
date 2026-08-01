@@ -39,7 +39,7 @@ export class PracticeProvider
 
   getChildren(element?: PracticeNode): PracticeNode[] {
     if (!this.workspaceRoot) {
-      return [emptyStateNode("Open a folder and run 'LeetPrep: Initialize Workspace' to begin.")];
+      return [emptyStateNode("Open a folder and run 'LeetGrasp: Initialize Workspace' to begin.")];
     }
 
     if (!element) {
@@ -82,7 +82,7 @@ class GroupNode extends PracticeNode {
       `${meta.icon} ${meta.label} (${entries.length})`,
       vscode.TreeItemCollapsibleState.Expanded,
     );
-    this.contextValue = "leetprep.group";
+    this.contextValue = "leetgrasp.group";
   }
 }
 
@@ -93,9 +93,9 @@ class ProblemNode extends PracticeNode {
     this.description = `${entry.difficulty} · last ${lastDate}`;
     this.tooltip = `${entry.title}\n${entry.url}\nAttempts: ${entry.attempts}`;
     this.iconPath = new vscode.ThemeIcon("file-code");
-    this.contextValue = "leetprep.problem";
+    this.contextValue = "leetgrasp.problem";
     this.command = {
-      command: "leetprep._openAndReset",
+      command: "leetgrasp._openAndReset",
       title: "Practice this problem",
       arguments: [entry.slug],
     };

@@ -1,6 +1,6 @@
 {
-  "name": "leetprep",
-  "displayName": "LeetPrep",
+  "name": "leetgrasp",
+  "displayName": "LeetGrasp",
   "description": "Scaffold, test, and submit LeetCode problems in Python from VS Code — with an Anki-inspired rating step that drives a hardest-first practice queue.",
   "version": "0.1.0",
   "publisher": "khoa-doan",
@@ -10,7 +10,7 @@
   "icon": "media/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DNT-Khoa/leetprep.git"
+    "url": "https://github.com/DNT-Khoa/leetgrasp.git"
   },
   "license": "MIT",
   "engines": {
@@ -33,55 +33,55 @@
   "contributes": {
     "commands": [
       {
-        "command": "leetprep.init",
-        "title": "LeetPrep: Initialize Workspace"
+        "command": "leetgrasp.init",
+        "title": "LeetGrasp: Initialize Workspace"
       },
       {
-        "command": "leetprep.newProblem",
-        "title": "LeetPrep: New Problem from URL"
+        "command": "leetgrasp.newProblem",
+        "title": "LeetGrasp: New Problem from URL"
       },
       {
-        "command": "leetprep.searchLeetcode",
-        "title": "LeetPrep: Search LeetCode"
+        "command": "leetgrasp.searchLeetcode",
+        "title": "LeetGrasp: Search LeetCode"
       },
       {
-        "command": "leetprep.runTests",
-        "title": "LeetPrep: Run Tests",
+        "command": "leetgrasp.runTests",
+        "title": "LeetGrasp: Run Tests",
         "icon": "$(play)"
       },
       {
-        "command": "leetprep.submit",
-        "title": "LeetPrep: Submit",
+        "command": "leetgrasp.submit",
+        "title": "LeetGrasp: Submit",
         "icon": "$(cloud-upload)"
       },
       {
-        "command": "leetprep.resetProblem",
-        "title": "LeetPrep: Reset Problem",
+        "command": "leetgrasp.resetProblem",
+        "title": "LeetGrasp: Reset Problem",
         "icon": "$(discard)"
       },
       {
-        "command": "leetprep.pickRandom",
-        "title": "LeetPrep: Pick Random Practice Problem",
+        "command": "leetgrasp.pickRandom",
+        "title": "LeetGrasp: Pick Random Practice Problem",
         "icon": "$(getting-started-beginner)"
       },
       {
-        "command": "leetprep.setLeetcodeCookies",
-        "title": "LeetPrep: Set LeetCode Cookies"
+        "command": "leetgrasp.setLeetcodeCookies",
+        "title": "LeetGrasp: Set LeetCode Cookies"
       }
     ],
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "leetprep",
-          "title": "LeetPrep",
+          "id": "leetgrasp",
+          "title": "LeetGrasp",
           "icon": "media/icon-sidebar.svg"
         }
       ]
     },
     "views": {
-      "leetprep": [
+      "leetgrasp": [
         {
-          "id": "leetprep.practice",
+          "id": "leetgrasp.practice",
           "name": "Practice"
         }
       ]
@@ -89,39 +89,39 @@
     "menus": {
       "commandPalette": [
         {
-          "command": "leetprep.runTests",
-          "when": "leetprep.activeIsProblem"
+          "command": "leetgrasp.runTests",
+          "when": "leetgrasp.activeIsProblem"
         },
         {
-          "command": "leetprep.submit",
-          "when": "leetprep.activeIsProblem"
+          "command": "leetgrasp.submit",
+          "when": "leetgrasp.activeIsProblem"
         },
         {
-          "command": "leetprep.resetProblem",
-          "when": "leetprep.activeIsProblem"
+          "command": "leetgrasp.resetProblem",
+          "when": "leetgrasp.activeIsProblem"
         }
       ],
       "editor/title": [
         {
-          "command": "leetprep.runTests",
-          "when": "leetprep.activeIsProblem",
+          "command": "leetgrasp.runTests",
+          "when": "leetgrasp.activeIsProblem",
           "group": "navigation@1"
         },
         {
-          "command": "leetprep.submit",
-          "when": "leetprep.activeIsProblem",
+          "command": "leetgrasp.submit",
+          "when": "leetgrasp.activeIsProblem",
           "group": "navigation@2"
         },
         {
-          "command": "leetprep.resetProblem",
-          "when": "leetprep.activeIsProblem",
+          "command": "leetgrasp.resetProblem",
+          "when": "leetgrasp.activeIsProblem",
           "group": "navigation@3"
         }
       ],
       "view/title": [
         {
-          "command": "leetprep.pickRandom",
-          "when": "view == leetprep.practice",
+          "command": "leetgrasp.pickRandom",
+          "when": "view == leetgrasp.practice",
           "group": "navigation@1"
         }
       ]

@@ -37,7 +37,7 @@ jobs:
       - name: Package
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          npx --yes @vscode/vsce package --no-yarn --no-git-tag-version "$VERSION" -o "leetprep-${VERSION}.vsix"
+          npx --yes @vscode/vsce package --no-yarn --no-git-tag-version "$VERSION" -o "leetgrasp-${VERSION}.vsix"
 
       - name: Create GitHub release
         env:
@@ -57,7 +57,7 @@ jobs:
           INSTALL_BLOCK=$(cat <<EOF
           ## Install
           \`\`\`bash
-          code --install-extension leetprep-${VERSION}.vsix
+          code --install-extension leetgrasp-${VERSION}.vsix
           \`\`\`
           EOF
           )
@@ -81,11 +81,11 @@ jobs:
           fi
 
           gh release create "$GITHUB_REF_NAME" \
-            "leetprep-${VERSION}.vsix" \
-            --title "LeetPrep ${VERSION}" \
+            "leetgrasp-${VERSION}.vsix" \
+            --title "LeetGrasp ${VERSION}" \
             --notes "$NOTES"
 
       - name: Publish to VS Code Marketplace
-        run: npx --yes @vscode/vsce publish --packagePath "leetprep-${GITHUB_REF_NAME#v}.vsix" --no-yarn
+        run: npx --yes @vscode/vsce publish --packagePath "leetgrasp-${GITHUB_REF_NAME#v}.vsix" --no-yarn
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}

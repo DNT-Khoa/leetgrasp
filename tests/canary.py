@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Scaffold canary for LeetPrep.
+Scaffold canary for LeetGrasp.
 
 Runs scripts/new.py against a known-stable LeetCode problem (two-sum) and
 verifies the produced files are non-empty and well-formed. If the scaffold
@@ -67,25 +67,25 @@ def run_canary(workspace: str) -> list[str]:
     if not os.path.isdir(problem_dir):
         return [f"no `{EXPECTED_SLUG}/` directory created"]
 
-    for fname in ("solution.py", "notes.md", ".leetprep.json"):
+    for fname in ("solution.py", "notes.md", ".leetgrasp.json"):
         fpath = os.path.join(problem_dir, fname)
         if not os.path.exists(fpath):
             failures.append(f"{fname} was not created")
         elif os.path.getsize(fpath) == 0:
             failures.append(f"{fname} is empty")
 
-    meta_path = os.path.join(problem_dir, ".leetprep.json")
+    meta_path = os.path.join(problem_dir, ".leetgrasp.json")
     if os.path.exists(meta_path) and os.path.getsize(meta_path) > 0:
         try:
             with open(meta_path) as fh:
                 meta = json.load(fh)
         except json.JSONDecodeError as e:
-            failures.append(f".leetprep.json is not valid JSON: {e}")
+            failures.append(f".leetgrasp.json is not valid JSON: {e}")
         else:
             for key in REQUIRED_META_KEYS:
                 value = meta.get(key)
                 if value is None or (isinstance(value, str) and not value.strip()):
-                    failures.append(f".leetprep.json is missing or empty key '{key}'")
+                    failures.append(f".leetgrasp.json is missing or empty key '{key}'")
 
     solution_path = os.path.join(problem_dir, "solution.py")
     if os.path.exists(solution_path) and os.path.getsize(solution_path) > 0:
@@ -112,7 +112,7 @@ def main() -> int:
         print(f"ERROR: cannot find scripts/new.py from cwd={project_root}", file=sys.stderr)
         return 2
 
-    workspace = tempfile.mkdtemp(prefix="leetprep-canary-")
+    workspace = tempfile.mkdtemp(prefix="leetgrasp-canary-")
     try:
         shutil.copy(new_py, workspace)
         os.chmod(os.path.join(workspace, "new.py"), 0o755)

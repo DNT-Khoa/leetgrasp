@@ -30,7 +30,7 @@ export interface PendingEntry {
 const CURRENT_VERSION = 1;
 
 export function reviewsPath(workspaceRoot: string): string {
-  return path.join(workspaceRoot, ".leetprep", "reviews.json");
+  return path.join(workspaceRoot, ".leetgrasp", "reviews.json");
 }
 
 export function loadReviews(workspaceRoot: string): ReviewsFile {

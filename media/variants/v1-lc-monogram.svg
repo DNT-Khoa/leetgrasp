@@ -31,7 +31,7 @@
     <rect x="120" y="150" width="84" height="30" rx="4"/>
   </g>
 
-  <!-- Small "prep" dot — the sixth glyph hint that this is LeetPrep, not LeetCode -->
+  <!-- Small "prep" dot — the sixth glyph hint that this is LeetGrasp, not LeetCode -->
   <circle cx="210" cy="200" r="14" fill="#22C55E" stroke="#0F172A" stroke-width="3"/>
   <path d="M 202 200 L 208 206 L 218 194" fill="none" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

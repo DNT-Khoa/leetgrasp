@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate AI-curated release notes for a new LeetPrep release.
+Generate AI-curated release notes for a new LeetGrasp release.
 
 Usage:
     python3 scripts/release_notes.py <prev_tag_or_empty> <version>
@@ -20,9 +20,9 @@ import os
 import subprocess
 import sys
 
-PROMPT_TEMPLATE = """You are writing release notes for a VS Code extension called LeetPrep.
+PROMPT_TEMPLATE = """You are writing release notes for a VS Code extension called LeetGrasp.
 
-LeetPrep helps interview prep on LeetCode. It scaffolds Python solutions from the LeetCode catalog (each problem gets its own folder with `solution.py`, `notes.md`, and a hidden `.leetprep.json` cache), runs example tests via LeetCode's own judge, submits real solutions, and — after each Accepted submit — pops a modal asking the user to rate the attempt Hard / Medium / Easy. Those ratings drive a "Practice" sidebar panel that groups solved problems into 🔴 Hard / 🟡 Medium / 🟢 Easy tiers so the hardest ones bubble to the top for re-solving. Clicking a problem in the panel silently resets `solution.py` back to the starter so the user re-solves from scratch; a 🎲 button picks one at random for interview-style surprise. Auth is via `LEETCODE_SESSION` + `csrftoken` browser cookies stored in VS Code SecretStorage.
+LeetGrasp helps interview prep on LeetCode. It scaffolds Python solutions from the LeetCode catalog (each problem gets its own folder with `solution.py`, `notes.md`, and a hidden `.leetgrasp.json` cache), runs example tests via LeetCode's own judge, submits real solutions, and — after each Accepted submit — pops a modal asking the user to rate the attempt Hard / Medium / Easy. Those ratings drive a "Practice" sidebar panel that groups solved problems into 🔴 Hard / 🟡 Medium / 🟢 Easy tiers so the hardest ones bubble to the top for re-solving. Clicking a problem in the panel silently resets `solution.py` back to the starter so the user re-solves from scratch; a 🎲 button picks one at random for interview-style surprise. Auth is via `LEETCODE_SESSION` + `csrftoken` browser cookies stored in VS Code SecretStorage.
 
 Generate concise, well-structured release notes for version {version}, based on the commits and changed files below.
 

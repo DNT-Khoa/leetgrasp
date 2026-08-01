@@ -11,7 +11,7 @@ Example:
 Writes:
   <slug>/solution.py       Python starter code + Time/Space complexity header
   <slug>/notes.md          Title + problem link + description (plain markdown)
-  <slug>/.leetprep.json    { title, difficulty, questionId, url,
+  <slug>/.leetgrasp.json    { title, difficulty, questionId, url,
                              exampleTestcases, initialCode } — metadata read
                              by test_leetcode.py, submit_leetcode.py, and
                              reset_problem.py so they don't need to re-fetch
@@ -109,7 +109,7 @@ def fetch_question(slug: str, url: str) -> dict:
     if not question:
         raise ValueError(
             f"no public problem found for slug '{slug}' (premium-only?). "
-            "LeetPrep cannot scaffold premium problems — they require a paid subscription."
+            "LeetGrasp cannot scaffold premium problems — they require a paid subscription."
         )
 
     python_snippet = None
@@ -213,7 +213,7 @@ def scaffold(url: str) -> None:
         "exampleTestcases": q["exampleTestcases"],
         "initialCode": initial_code,
     }
-    meta_path = os.path.join(problem_dir, ".leetprep.json")
+    meta_path = os.path.join(problem_dir, ".leetgrasp.json")
     with open(meta_path, "w") as f:
         json.dump(meta, f, indent=2)
     print(f"Created: {meta_path}")
